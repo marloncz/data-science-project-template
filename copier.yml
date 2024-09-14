@@ -27,11 +27,6 @@ author_name:
   type: str
   help: Your name
 
-git_repository:
-  type: str
-  help: Your git repository url. Leave empty if there is None.
-  default: ""
-
 hydra:
   type: bool
   help: Do you want to use hydra as orchestrator for your project?
