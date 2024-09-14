@@ -1,0 +1,10 @@
+name: {{ package_name }}
+
+services:
+  {{ package_name }}:
+    image: '{{ package_name }}:latest'
+    build:
+      context: ./../
+      dockerfile: docker/{{ package_name }}/Dockerfile
+    env_file: ./../.env
+    tty: true

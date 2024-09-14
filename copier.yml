@@ -1,0 +1,59 @@
+--- # CONFIGURATION -------------------------
+_subdirectory: project
+_templates_suffix: .j2
+_answers_file: .copier-answers.yml
+_envops:
+  keep_trailing_newline: true
+  trim_blocks: false
+_tasks:
+  - ["{{ _copier_python }}", scripts/info_prompts.py]
+
+# PROMPT --------------------------------
+
+project_name:
+  type: str
+  help: Your project name
+
+project_description:
+  type: str
+  help: Your project description
+
+package_name:
+  type: str
+  help: Your Python package import name (for `import NAME` in Python code)
+  default: "{{ project_name|lower|regex_replace('[^a-z0-9]', '_') }}"
+
+author_name:
+  type: str
+  help: Your name
+
+git_repository:
+  type: str
+  help: Your git repository url. Leave empty if there is None.
+  default: ""
+
+hydra:
+  type: bool
+  help: Do you want to use hydra as orchestrator for your project?
+  default: yes
+
+python_version:
+  type: str
+  help: "Your python version for the project"
+  default: "3.11.9"
+  validator: "{% if python_version.split('.') | length < 2 %} Version {{ python_version }} is not specified to at least the minor version. {%- endif %}"
+
+use_direnv:
+  type: bool
+  help: Do you want to use direnv? (It will be installed automatically)
+  default: yes
+
+use_jupyterlab:
+  type: bool
+  help: Do you want to install jupyter lab?
+  default: yes
+
+use_docker:
+  type: bool
+  help: Do you want to initialize a docker file?
+  default: yes

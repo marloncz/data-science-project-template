@@ -1,0 +1,52 @@
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.64.1"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # pyflake
+    "I",     # isort
+    "D",     # pydocstyle
+    "C901",  # complexity
+    "N",     # pep8 naming convention
+    "UP",    # pyupgrade
+    "NPY",   # NumPy-specific rules
+    "ASYNC", # flake8-async
+    "S105",  # flake8-bandit: hardcoded-password-string
+    "S106",  # flake8-bandit: hardcoded-password-func-arg
+    "S107",  # flake8-bandit: hardcoded-password-default
+    "C4",    # flake8-comprehensions
+    "ICN",   # flake8-import-conventions
+    "PIE",   # flake8-pie
+    "RET",   # flake8-return
+    "SIM",   # flake8-simplify
+]
+ignore = [
+    "D100", # ignore missing docstring on module level
+    "D104", # ignore missing docstring on package level
+    "D206", # indent with spaces, may get conflicts with ruff formatter
+    "D417", # On top of the Google convention, disable `D417`, which requires documentation for every function parameter.
+    "E501", # line too long, handled by ruff formatter if possible
+    "RET504", # unnecessary-assign to maintain debuggability
+    "RET505", # unnecessary-branch no autofix
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # ignore unused imports in __init__ file
+"tests/*" = ["D103"] # ignore missing docstring in tests
+"project/*" = ["N999"] # module name not templated
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 18

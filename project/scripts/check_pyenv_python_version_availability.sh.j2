@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+# Update pyenv if python version is not yet available
+if ! pyenv install -list | grep -q {{ python_version }}; then
+    brew update && brew upgrade pyenv
+fi
